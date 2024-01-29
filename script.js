@@ -21,8 +21,15 @@ Button.addEventListener("click", ()=>{
     passwordBox.value=password;
 });
 
-console.log(passwordBox);
-// copyButton.addEventListener("click", ()=>{
-//     passwordBox.select();
-//     document.execCommand('copy');
-// });
+copyButton.addEventListener("click", ()=>{
+    const passwordInput = document.getElementById('password');
+    const generatedPassword = passwordInput.value;
+
+    navigator.clipboard.writeText(generatedPassword)
+      .then(() => {
+        console.log('Password copied to clipboard');
+      })
+      .catch(err => {
+        console.error('Unable to copy password to clipboard', err);
+      });
+});
